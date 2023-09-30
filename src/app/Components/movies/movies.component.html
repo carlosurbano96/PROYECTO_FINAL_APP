@@ -1,0 +1,32 @@
+<div class="container">
+
+  <h2 class="my-4">Todas las peliculas</h2>
+
+  <div class="row mt-2">
+    <div *ngFor="let element of peliculas | paginate: { itemsPerPage: 3, currentPage: page}" class="col-md-4">
+      <div class="card mb-3" style="width: 100%">
+        <img [src]="element.rutaImagen" class="card-img-top" alt="..." />
+        <div class="card-body">
+          <h5 class="card-title">{{element.nombre}}</h5>
+          <p class="card-text">
+            {{element.descripccion}}
+          </p>
+          <div class="d-flex mb-2">
+            <label>Fecha de lanzamiento:</label>
+            <span class="ms-2">{{element.fechaLanzamiento}}</span>
+          </div>
+          <a (click)="goMovieDetail(element.idMovie.toString())" class="btn btn-primary">Detalle</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-center">
+    <pagination-controls (pageChange)="page = $event"
+                      previousLabel="Anterior"
+                      nextLabel="Siguiente">
+    </pagination-controls>
+  </div>
+
+
+</div>
